@@ -11,8 +11,6 @@ export function Operatives() {
     target: ref,
     offset: ["start end", "end start"],
   });
-  const droneX = useTransform(scrollYProgress, [0, 1], [-150, 150]);
-  const droneY = useTransform(scrollYProgress, [0, 1], [60, -60]);
   const imgY = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   return (
@@ -24,41 +22,6 @@ export function Operatives() {
       {/* atmosphere */}
       <div className="absolute inset-0 bg-grid-faint [background-size:80px_80px] opacity-30" />
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-radial-gold opacity-60" />
-
-      {/* drone flying through */}
-      <motion.div
-        style={{ x: droneX, y: droneY }}
-        className="absolute top-24 left-1/2 -translate-x-1/2 w-40 opacity-90 pointer-events-none"
-      >
-        <svg viewBox="0 0 200 100">
-          <g stroke="#26262d" strokeWidth="3" strokeLinecap="round">
-            <line x1="100" y1="50" x2="40" y2="25" />
-            <line x1="100" y1="50" x2="160" y2="25" />
-            <line x1="100" y1="50" x2="40" y2="75" />
-            <line x1="100" y1="50" x2="160" y2="75" />
-          </g>
-          {[
-            [40, 25],
-            [160, 25],
-            [40, 75],
-            [160, 75],
-          ].map(([x, y], i) => (
-            <motion.ellipse
-              key={i}
-              cx={x}
-              cy={y}
-              rx="22"
-              ry="1.5"
-              fill="#d4a13a"
-              opacity="0.7"
-              animate={{ rx: [22, 26, 22] }}
-              transition={{ duration: 0.3, repeat: Infinity }}
-            />
-          ))}
-          <rect x="80" y="40" width="40" height="20" rx="4" fill="#1a1a1f" stroke="#3a3d44" />
-          <circle cx="100" cy="62" r="5" fill="#d4a13a" />
-        </svg>
-      </motion.div>
 
       <div className="relative mx-auto max-w-7xl px-6">
         <motion.div

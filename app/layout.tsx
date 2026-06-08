@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Orbitron } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" });
 
 export const metadata: Metadata = {
   title: "Vig.IA — Seguridad con Inteligencia",
@@ -18,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${inter.variable} ${orbitron.variable}`}>
+    <html lang="es" className={inter.variable}>
       <body className="font-sans bg-ink-950 text-steel-200 antialiased">
         {children}
       </body>

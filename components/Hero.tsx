@@ -3,7 +3,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Shield, PlayCircle } from "lucide-react";
 import { useRef } from "react";
-import { Drone } from "./Drone";
 import { Particles } from "./Particles";
 
 export function Hero() {
@@ -14,26 +13,34 @@ export function Hero() {
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const droneY = useTransform(scrollYProgress, [0, 1], [0, -220]);
-  const droneX = useTransform(scrollYProgress, [0, 1], [0, 70]);
-  const droneRotate = useTransform(scrollYProgress, [0, 1], [0, -5]);
-  const droneScale = useTransform(scrollYProgress, [0, 1], [1, 0.88]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   return (
     <section
       ref={ref}
-      className="relative min-h-screen w-full overflow-hidden bg-ink-950 noise"
+      className="relative isolate min-h-screen w-full overflow-hidden bg-ink-950 noise"
     >
-      {/* Grid + vignette */}
-      <div className="absolute inset-0 bg-grid-faint [background-size:60px_60px] opacity-50" />
+      <motion.video
+        aria-hidden="true"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        style={{ scale }}
+        className="absolute inset-0 h-full w-full object-cover object-center opacity-60"
+      >
+        <source src="/drone-security-footage.mp4" type="video/mp4" />
+      </motion.video>
+      <div className="absolute inset-0 bg-gradient-to-b from-ink-950/75 via-ink-950/45 to-ink-950" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink-950/80 via-transparent to-ink-950/65" />
+      <div className="absolute inset-0 bg-grid-faint [background-size:60px_60px] opacity-35" />
       <div className="absolute inset-0 hero-vignette" />
       <Particles density={80} />
 
-      {/* Radial gold glow behind drone */}
       <motion.div
         style={{ scale }}
-        className="absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-radial-gold pointer-events-none"
+        className="absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-radial-gold opacity-45 pointer-events-none"
       />
 
       {/* Scanlines */}
@@ -43,22 +50,14 @@ export function Hero() {
 
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 mx-auto max-w-7xl px-6 pt-40 pb-24 flex flex-col items-center text-center"
+        className="relative z-10 mx-auto max-w-7xl px-6 pt-44 pb-24 flex min-h-screen flex-col items-center justify-center text-center"
       >
-        {/* Drone visual */}
-        <motion.div
-          style={{ y: droneY, x: droneX, rotate: droneRotate, scale: droneScale }}
-          className="w-[420px] max-w-full -mb-6"
-        >
-          <Drone />
-        </motion.div>
-
         {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] mt-4"
+          className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95]"
         >
           <span className="text-gradient-steel">Seguridad con</span>
           <br />
