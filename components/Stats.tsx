@@ -37,7 +37,7 @@ const stats: { n?: number; s?: string; str?: string; l: string }[] = [
 
 export function Stats() {
   return (
-    <section className="relative py-24 bg-ink-950 border-y border-white/5 overflow-hidden">
+    <section className="relative py-24 bg-ink-950/68 border-y border-white/5 overflow-hidden">
       <div className="absolute inset-0 bg-grid-faint [background-size:50px_50px] opacity-20" />
       <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[800px] h-[2px] divider-gold" />
 
@@ -50,7 +50,7 @@ export function Stats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="bg-ink-900 px-6 py-10 text-center relative group"
+              className="bg-ink-900/85 px-6 py-10 text-center relative group"
             >
               <div className="font-display text-4xl md:text-5xl text-gradient-gold">
                 {s.str ? s.str : <Counter to={s.n!} suffix={s.s} />}

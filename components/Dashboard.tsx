@@ -8,7 +8,7 @@ export function Dashboard() {
   return (
     <section
       id="tecnologia"
-      className="relative py-32 lg:py-40 bg-gradient-to-b from-ink-950 via-ink-900 to-ink-950 overflow-hidden"
+      className="relative py-32 lg:py-40 bg-gradient-to-b from-ink-950/65 via-ink-900/55 to-ink-950/65 overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid-faint [background-size:80px_80px] opacity-25" />
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-radial-gold opacity-40" />

@@ -10,22 +10,26 @@ import { Process } from "@/components/Process";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { WhatsApp } from "@/components/WhatsApp";
+import { PageBackground } from "@/components/PageBackground";
 
 export default function Page() {
   return (
-    <main className="relative">
-      <Navbar />
-      <Hero />
-      <Operatives />
-      <Values />
-      <Services />
-      <Dashboard />
-      <RiskMap />
-      <Stats />
-      <Process />
-      <CTA />
-      <Footer />
-      <WhatsApp />
+    <main className="relative isolate min-h-screen overflow-hidden">
+      <PageBackground />
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <Operatives />
+        <Values />
+        <Services />
+        <Dashboard />
+        <RiskMap />
+        <Stats />
+        <Process />
+        <CTA />
+        <Footer />
+        <WhatsApp />
+      </div>
     </main>
   );
 }

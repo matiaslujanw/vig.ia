@@ -17,7 +17,7 @@ export function Operatives() {
     <section
       id="nosotros"
       ref={ref}
-      className="relative py-32 lg:py-48 overflow-hidden bg-gradient-to-b from-ink-950 via-ink-900 to-ink-950"
+      className="relative py-32 lg:py-48 overflow-hidden bg-gradient-to-b from-ink-950/65 via-ink-900/55 to-ink-950/65"
     >
       {/* atmosphere */}
       <div className="absolute inset-0 bg-grid-faint [background-size:80px_80px] opacity-30" />

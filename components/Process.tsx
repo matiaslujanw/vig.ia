@@ -34,7 +34,7 @@ export function Process() {
   return (
     <section
       id="operacion"
-      className="relative py-32 bg-ink-950 overflow-hidden"
+      className="relative py-32 bg-ink-950/62 overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid-faint [background-size:60px_60px] opacity-25" />
       <div className="relative mx-auto max-w-7xl px-6">

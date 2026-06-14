@@ -7,7 +7,7 @@ export function CTA() {
   return (
     <section
       id="contacto"
-      className="relative py-32 bg-ink-950 overflow-hidden"
+      className="relative py-32 bg-ink-950/62 overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid-faint [background-size:80px_80px] opacity-20" />
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-radial-gold opacity-60" />

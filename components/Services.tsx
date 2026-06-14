@@ -60,7 +60,7 @@ export function Services() {
   return (
     <section
       id="soluciones"
-      className="relative py-32 lg:py-40 bg-ink-950 overflow-hidden"
+      className="relative py-32 lg:py-40 bg-ink-950/62 overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid-faint [background-size:60px_60px] opacity-30" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-radial-gold opacity-50" />

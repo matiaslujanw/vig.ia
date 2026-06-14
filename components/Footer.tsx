@@ -5,7 +5,7 @@ import { Mail, MapPin, Phone, Linkedin, Instagram } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="relative bg-ink-900 border-t border-white/5 pt-20 pb-10">
+    <footer className="relative bg-ink-900/75 border-t border-white/5 pt-20 pb-10">
       <div className="absolute inset-x-0 top-0 h-px divider-gold" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">

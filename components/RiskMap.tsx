@@ -66,7 +66,7 @@ export function RiskMap() {
   return (
     <section
       id="riesgos"
-      className="relative py-32 lg:py-40 bg-ink-950 overflow-hidden"
+      className="relative py-32 lg:py-40 bg-ink-950/62 overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid-faint [background-size:80px_80px] opacity-25" />
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-radial-gold opacity-40" />

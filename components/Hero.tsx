@@ -13,33 +13,19 @@ export function Hero() {
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   return (
     <section
       ref={ref}
-      className="relative isolate min-h-screen w-full overflow-hidden bg-ink-950 noise"
+      className="relative isolate min-h-screen w-full overflow-hidden bg-ink-950/5 noise"
     >
-      <motion.video
-        aria-hidden="true"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        style={{ scale }}
-        className="absolute inset-0 h-full w-full object-cover object-center opacity-60"
-      >
-        <source src="/drone-security-footage.mp4" type="video/mp4" />
-      </motion.video>
-      <div className="absolute inset-0 bg-gradient-to-b from-ink-950/75 via-ink-950/45 to-ink-950" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink-950/80 via-transparent to-ink-950/65" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink-950/35 via-ink-950/10 to-ink-950/25" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink-950/45 via-transparent to-ink-950/35" />
       <div className="absolute inset-0 bg-grid-faint [background-size:60px_60px] opacity-35" />
-      <div className="absolute inset-0 hero-vignette" />
+      <div className="absolute inset-0 hero-vignette opacity-55" />
       <Particles density={80} />
 
       <motion.div
-        style={{ scale }}
         className="absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-radial-gold opacity-45 pointer-events-none"
       />
 
