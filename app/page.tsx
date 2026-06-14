@@ -7,6 +7,7 @@ import { Dashboard } from "@/components/Dashboard";
 import { RiskMap } from "@/components/RiskMap";
 import { Stats } from "@/components/Stats";
 import { Process } from "@/components/Process";
+import { Careers } from "@/components/Careers";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { WhatsApp } from "@/components/WhatsApp";
@@ -26,6 +27,7 @@ export default function Page() {
         <RiskMap />
         <Stats />
         <Process />
+        <Careers />
         <CTA />
         <Footer />
         <WhatsApp />

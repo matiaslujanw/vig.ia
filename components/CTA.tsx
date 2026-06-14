@@ -41,7 +41,7 @@ export function CTA() {
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://wa.me/5493810000000"
+              href="https://wa.me/5493814156775?text=Hola%2C%20estoy%20interesado%20en%20sus%20servicios..."
               target="_blank"
               rel="noopener"
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-gold-500 to-gold-400 text-ink-950 font-medium tracking-wide shadow-glow hover:shadow-[0_0_60px_rgba(212,161,58,0.5)] transition-shadow"
@@ -50,11 +50,11 @@ export function CTA() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="tel:+5493810000000"
+              href="tel:+5493814156775"
               className="inline-flex items-center gap-2 px-7 py-4 rounded-full glass text-steel-200 hover:bg-white/5 transition-colors"
             >
               <Phone className="w-4 h-4 text-gold-400" />
-              +54 9 381 000 0000
+              +54 9 3814 15-6775
             </a>
           </div>
         </div>

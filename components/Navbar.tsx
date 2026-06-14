@@ -8,6 +8,7 @@ const links = [
   { label: "Soluciones", href: "#soluciones" },
   { label: "Tecnología", href: "#tecnologia" },
   { label: "Riesgos", href: "#riesgos" },
+  { label: "Equipo", href: "#equipo" },
   { label: "Contacto", href: "#contacto" },
 ];
 

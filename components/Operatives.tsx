@@ -50,7 +50,7 @@ export function Operatives() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Equipo / uniforme real */}
+          {/* Vehículo operativo real */}
           <motion.div
             style={{ y: imgY }}
             initial={{ opacity: 0, x: -40 }}
@@ -59,11 +59,11 @@ export function Operatives() {
             transition={{ duration: 0.8 }}
             className="md:col-span-6 lg:col-span-7"
           >
-            <div className="max-w-[440px] mx-auto">
+            <div className="max-w-[560px] mx-auto">
               <div className="relative rounded-2xl overflow-hidden ring-gold glass">
                 <Image
-                  src="/equipo-tactico.jpeg"
-                  alt="Equipo operativo de Vig.IA con uniforme táctico"
+                  src="/vehiculo.jpeg"
+                  alt="Vehículo operativo de Vig.IA"
                   width={853}
                   height={1280}
                   className="w-full h-auto"
@@ -76,7 +76,7 @@ export function Operatives() {
               </div>
               <div className="mt-4 flex justify-center">
                 <span className="px-4 py-1.5 rounded-full glass-gold text-[10px] uppercase tracking-[0.25em] text-gold-300">
-                  Uniforme operativo Vig.IA
+                  Vehículo operativo Vig.IA
                 </span>
               </div>
             </div>

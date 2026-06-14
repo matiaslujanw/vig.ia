@@ -2,10 +2,13 @@
 
 import { motion } from "framer-motion";
 
+const whatsappUrl =
+  "https://wa.me/5493814156775?text=Hola%2C%20estoy%20interesado%20en%20sus%20servicios...";
+
 export function WhatsApp() {
   return (
     <motion.a
-      href="https://wa.me/5493810000000"
+      href={whatsappUrl}
       target="_blank"
       rel="noopener"
       initial={{ opacity: 0, scale: 0 }}
