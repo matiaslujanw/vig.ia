@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: "Vig.IA — Seguridad con Inteligencia",
   description:
-    "Empresa de seguridad privada y tecnología. Vigilancia inteligente, drones, CCTV, ciberseguridad y protección ejecutiva.",
+    "Empresa de seguridad privada y tecnología. Vigilancia inteligente, drones, CCTV, rastreo satelital GPS de flotas, ciberseguridad y protección ejecutiva.",
   themeColor: "#050505",
 };
 

@@ -7,6 +7,7 @@ const links = [
   { label: "Nosotros", href: "#nosotros" },
   { label: "Soluciones", href: "#soluciones" },
   { label: "Tecnología", href: "#tecnologia" },
+  { label: "GPS", href: "#rastreo" },
   { label: "Riesgos", href: "#riesgos" },
   { label: "Equipo", href: "#equipo" },
   { label: "Contacto", href: "#contacto" },
@@ -28,12 +29,12 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-6 h-20 flex items-center justify-between">
         <Logo />
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-6 xl:gap-10">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-sm uppercase tracking-[0.18em] text-steel-300 hover:text-gold-400 transition-colors relative group"
+              className="text-sm uppercase tracking-[0.18em] text-steel-300 hover:text-gold-400 transition-colors relative group whitespace-nowrap"
             >
               {l.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold-500 group-hover:w-full transition-all duration-300" />

@@ -8,8 +8,10 @@ import {
   HardHat,
   Radar,
   FileSearch,
+  Satellite,
   Check,
   ArrowUpRight,
+  type LucideIcon,
 } from "lucide-react";
 
 const offerings = [
@@ -19,11 +21,17 @@ const offerings = [
   "Control de accesos",
   "Tecnología aplicada a la prevención",
   "Drones y vigilancia perimetral",
+  "Rastreo satelital GPS de flotas",
   "Informes y seguimiento operativo",
   "Soluciones personalizadas según el riesgo",
 ];
 
-const solutions = [
+const solutions: {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  href?: string;
+}[] = [
   {
     icon: Building2,
     title: "Empresas y comercios",
@@ -48,6 +56,12 @@ const solutions = [
     icon: Radar,
     title: "Monitoreo inteligente",
     desc: "Seguimiento en tiempo real mediante tecnología y protocolos de respuesta.",
+  },
+  {
+    icon: Satellite,
+    title: "Rastreo satelital GPS",
+    desc: "Control de vehículos y flotas en tiempo real, con alertas, geocercas y reportes.",
+    href: "#rastreo",
   },
   {
     icon: FileSearch,
@@ -118,7 +132,7 @@ export function Services() {
           {solutions.map((s, i) => (
             <motion.a
               key={s.title}
-              href="#contacto"
+              href={s.href ?? "#contacto"}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}

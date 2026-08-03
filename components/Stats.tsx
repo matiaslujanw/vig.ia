@@ -30,7 +30,7 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
 
 const stats: { n?: number; s?: string; str?: string; l: string }[] = [
   { str: "24/7", l: "Monitoreo y respuesta" },
-  { n: 6, s: "", l: "Soluciones integrales" },
+  { n: 7, s: "", l: "Soluciones integrales" },
   { str: "NOA", l: "Cobertura regional" },
   { str: "100%", l: "Soluciones a medida" },
 ];

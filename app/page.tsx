@@ -4,6 +4,7 @@ import { Operatives } from "@/components/Operatives";
 import { Values } from "@/components/Values";
 import { Services } from "@/components/Services";
 import { Dashboard } from "@/components/Dashboard";
+import { Tracking } from "@/components/Tracking";
 import { RiskMap } from "@/components/RiskMap";
 import { Stats } from "@/components/Stats";
 import { Process } from "@/components/Process";
@@ -24,6 +25,7 @@ export default function Page() {
         <Values />
         <Services />
         <Dashboard />
+        <Tracking />
         <RiskMap />
         <Stats />
         <Process />
