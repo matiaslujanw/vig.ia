@@ -36,15 +36,16 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 text-sm text-steel-400">
               {[
-                "Empresas y comercios",
-                "Residencial y consorcios",
-                "Seguridad rural",
-                "Obras e industrias",
-                "Monitoreo inteligente",
-              ].map((l) => (
-                <li key={l}>
-                  <a href="#soluciones" className="hover:text-gold-300 transition-colors">
-                    {l}
+                { l: "Empresas y comercios", h: "#soluciones" },
+                { l: "Residencial y consorcios", h: "#soluciones" },
+                { l: "Seguridad rural", h: "#soluciones" },
+                { l: "Obras e industrias", h: "#soluciones" },
+                { l: "Monitoreo inteligente", h: "#soluciones" },
+                { l: "Rastreo satelital GPS", h: "#rastreo" },
+              ].map((s) => (
+                <li key={s.l}>
+                  <a href={s.h} className="hover:text-gold-300 transition-colors">
+                    {s.l}
                   </a>
                 </li>
               ))}
