@@ -52,8 +52,9 @@ export async function POST(request: Request) {
   }
 
   const content = Buffer.from(await cv.arrayBuffer()).toString("base64");
-  const to = process.env.CAREERS_TO_EMAIL || "comando@vigia.security";
-  const from = process.env.RESEND_FROM || "Vig.IA <postulaciones@vigia.security>";
+  const to = process.env.CAREERS_TO_EMAIL || "administracion@vigiaseguridad.com.ar";
+  const from =
+    process.env.RESEND_FROM || "Vig.IA <postulaciones@vigiaseguridad.com.ar>";
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",

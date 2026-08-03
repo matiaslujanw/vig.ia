@@ -59,11 +59,21 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-steel-400">
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 text-gold-400 mt-0.5" />
-                +54 9 3814 15-6775
+                <a
+                  href="tel:+5493814156775"
+                  className="hover:text-gold-300 transition-colors"
+                >
+                  +54 9 3814 15-6775
+                </a>
               </li>
               <li className="flex items-start gap-2">
-                <Mail className="w-4 h-4 text-gold-400 mt-0.5" />
-                comando@vigia.security
+                <Mail className="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0" />
+                <a
+                  href="mailto:administracion@vigiaseguridad.com.ar"
+                  className="text-xs break-all hover:text-gold-300 transition-colors"
+                >
+                  administracion@vigiaseguridad.com.ar
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-gold-400 mt-0.5" />

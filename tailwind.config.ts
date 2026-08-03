@@ -43,6 +43,7 @@ const config: Config = {
         scan: "scan 4s linear infinite",
         shimmer: "shimmer 3s linear infinite",
         pulseSoft: "pulseSoft 3s ease-in-out infinite",
+        menuIn: "menuIn 0.25s ease-out",
       },
       keyframes: {
         float: {
@@ -60,6 +61,10 @@ const config: Config = {
         pulseSoft: {
           "0%,100%": { opacity: "0.5" },
           "50%": { opacity: "1" },
+        },
+        menuIn: {
+          "0%": { opacity: "0", transform: "translateY(-8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
     },
