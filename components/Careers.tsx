@@ -71,6 +71,16 @@ export function Careers() {
                 </div>
               ))}
             </div>
+
+            <p className="mt-6 text-sm text-steel-400 leading-relaxed">
+              También podés enviarnos tu CV directamente a{" "}
+              <a
+                href="mailto:administracion@vigiaseguridad.com.ar"
+                className="text-gold-300 break-all hover:text-gold-200 transition-colors"
+              >
+                administracion@vigiaseguridad.com.ar
+              </a>
+            </p>
           </div>
 
           <form

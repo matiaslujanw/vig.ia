@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Mail, Phone } from "lucide-react";
 
 export function CTA() {
   return (
@@ -57,6 +57,14 @@ export function CTA() {
               +54 9 3814 15-6775
             </a>
           </div>
+
+          <a
+            href="mailto:administracion@vigiaseguridad.com.ar"
+            className="mt-6 inline-flex items-center gap-2 text-sm text-steel-300 hover:text-gold-300 transition-colors"
+          >
+            <Mail className="w-4 h-4 text-gold-400 flex-shrink-0" />
+            <span className="break-all">administracion@vigiaseguridad.com.ar</span>
+          </a>
         </div>
       </motion.div>
     </section>
