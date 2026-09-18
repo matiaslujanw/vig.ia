@@ -14,8 +14,13 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+const featuredOffering = {
+  title: "Ecosistema digital para consorcios",
+  detail:
+    "Tótem con IA, accesos biométricos, cámaras LPR (lectoras de patentes), app propia y monitoreo 24/7",
+};
+
 const offerings = [
-  "Ecosistema digital para consorcios integrado por tótem con IA, accesos biométricos, cámaras LPR (lectoras de patentes), app propia y monitoreo 24/7",
   "Seguridad presencial profesional",
   "Monitoreo remoto 24/7",
   "Integración de cámaras y alarmas",
@@ -121,8 +126,26 @@ export function Services() {
               Ofrecemos
             </div>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5">
-              {offerings.map((o) => (
-                <li key={o} className="flex items-start gap-3 text-sm text-steel-300">
+              <li className="sm:col-span-2 flex items-start gap-3 rounded-xl border border-gold-500/20 bg-gold-500/[0.06] p-4 text-sm text-steel-300">
+                <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-md glass-gold flex items-center justify-center">
+                  <Check className="w-3 h-3 text-gold-400" />
+                </span>
+                <span className="grid flex-1 gap-1.5 sm:grid-cols-[0.9fr_1.6fr] sm:gap-5">
+                  <span className="font-medium text-gold-300">
+                    {featuredOffering.title}
+                  </span>
+                  <span className="leading-relaxed">
+                    {featuredOffering.detail}
+                  </span>
+                </span>
+              </li>
+              {offerings.map((o, index) => (
+                <li
+                  key={o}
+                  className={`flex items-start gap-3 text-sm text-steel-300 ${
+                    index === offerings.length - 1 ? "sm:col-span-2" : ""
+                  }`}
+                >
                   <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-md glass-gold flex items-center justify-center">
                     <Check className="w-3 h-3 text-gold-400" />
                   </span>
