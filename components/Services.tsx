@@ -15,8 +15,7 @@ import {
 } from "lucide-react";
 
 const offerings = [
-  "Ecosistema digital integrado por tótem con IA y accesos biométricos",
-  "Cámaras LPR (lectoras de patentes), app propia y monitoreo 24/7",
+  "Ecosistema digital para consorcios integrado por tótem con IA, accesos biométricos, cámaras LPR (lectoras de patentes), app propia y monitoreo 24/7",
   "Seguridad presencial profesional",
   "Monitoreo remoto 24/7",
   "Integración de cámaras y alarmas",
