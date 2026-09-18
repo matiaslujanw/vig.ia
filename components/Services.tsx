@@ -36,17 +36,17 @@ const solutions: {
   external?: boolean;
 }[] = [
   {
-    icon: Building2,
-    title: "Empresas y comercios",
-    desc: "Control de accesos, monitoreo y prevención de pérdidas.",
-  },
-  {
     icon: Home,
     title: "Residencial y consorcios",
     desc: "Protección integral para edificios, barrios y complejos.",
     href: "https://carta-presentacion-iota.vercel.app/",
     badge: "Demo",
     external: true,
+  },
+  {
+    icon: Building2,
+    title: "Empresas y comercios",
+    desc: "Control de accesos, monitoreo y prevención de pérdidas.",
   },
   {
     icon: Tractor,
