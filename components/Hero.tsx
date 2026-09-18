@@ -57,9 +57,9 @@ export function Hero() {
           className="mt-8 max-w-2xl text-base md:text-lg text-steel-300/90 leading-relaxed"
         >
           Combinamos seguridad física, monitoreo inteligente y tecnología
-          aplicada en un único sistema integral. Protegemos personas, bienes e
-          infraestructura con prevención, control y capacidad de respuesta a la
-          medida de cada cliente.
+          aplicada en un único sistema integral. Nuestro ecosistema digital
+          integra tótems con IA, accesos biométricos y cámaras LPR para lectura
+          de patentes, conectados a una app propia y monitoreo 24/7.
         </motion.p>
 
         {/* CTAs */}
