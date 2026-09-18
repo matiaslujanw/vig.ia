@@ -31,6 +31,8 @@ const solutions: {
   title: string;
   desc: string;
   href?: string;
+  badge?: string;
+  external?: boolean;
 }[] = [
   {
     icon: Building2,
@@ -41,6 +43,9 @@ const solutions: {
     icon: Home,
     title: "Residencial y consorcios",
     desc: "Protección integral para edificios, barrios y complejos.",
+    href: "https://carta-presentacion-iota.vercel.app/",
+    badge: "Demo",
+    external: true,
   },
   {
     icon: Tractor,
@@ -133,6 +138,8 @@ export function Services() {
             <motion.a
               key={s.title}
               href={s.href ?? "#contacto"}
+              target={s.external ? "_blank" : undefined}
+              rel={s.external ? "noopener noreferrer" : undefined}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -148,7 +155,14 @@ export function Services() {
                 <div className="w-12 h-12 rounded-xl glass-gold flex items-center justify-center group-hover:scale-110 transition-transform">
                   <s.icon className="w-5 h-5 text-gold-400" />
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-steel-400 group-hover:text-gold-400 group-hover:rotate-45 transition-all duration-300" />
+                <div className="flex items-center gap-2">
+                  {s.badge && (
+                    <span className="rounded-full border border-gold-500/40 bg-gold-500/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-gold-300">
+                      {s.badge}
+                    </span>
+                  )}
+                  <ArrowUpRight className="w-4 h-4 text-steel-400 group-hover:text-gold-400 group-hover:rotate-45 transition-all duration-300" />
+                </div>
               </div>
 
               <h3 className="relative font-display text-lg text-steel-200 mb-2 leading-snug">
