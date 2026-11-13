@@ -1,94 +1,104 @@
-"use client";
-
+import { Instagram, Linkedin } from "lucide-react";
 import { Logo } from "./Logo";
-import { Mail, MapPin, Phone, Linkedin, Instagram } from "lucide-react";
+import { navLinks, site } from "@/lib/site";
+import { EmailText } from "./ui";
+
+const solutions = [
+  { label: "Residencial y consorcios", href: "#ecosistema" },
+  { label: "Empresas y comercios", href: "#soluciones" },
+  { label: "Seguridad rural", href: "#soluciones" },
+  { label: "Obras e industrias", href: "#soluciones" },
+  { label: "Monitoreo inteligente", href: "#tecnologia" },
+  { label: "Rastreo satelital GPS", href: "#rastreo" },
+];
+
+function Column({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h4 className="label text-steel-500">{title}</h4>
+      <ul className="mt-5 space-y-3 text-sm text-steel-300">{children}</ul>
+    </div>
+  );
+}
+
+const link = "transition-colors hover:text-gold-300";
 
 export function Footer() {
   return (
-    <footer className="relative bg-ink-900/75 border-t border-white/5 pt-20 pb-10">
-      <div className="absolute inset-x-0 top-0 h-px divider-gold" />
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="md:col-span-2">
-            <Logo className="h-16 md:h-20 w-auto" />
-            <p className="mt-6 text-sm text-steel-400 max-w-md leading-relaxed">
+    <footer className="border-t border-line bg-ink-950">
+      <div className="mx-auto max-w-site px-6 pb-10 pt-16 lg:px-10 lg:pt-20">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <Logo className="-mb-3 -ml-5 -mt-8 h-44" />
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-steel-400">
               Empresa tucumana de seguridad privada que integra seguridad
               física, monitoreo inteligente y tecnología aplicada en un único
               sistema integral. Prevención, control y respuesta a la medida de
               cada cliente.
             </p>
-            <div className="mt-6 flex gap-3">
-              {[Linkedin, Instagram].map((Icon, i) => (
+            <div className="mt-6 flex gap-2">
+              {[
+                { Icon: Linkedin, label: "LinkedIn" },
+                { Icon: Instagram, label: "Instagram" },
+              ].map(({ Icon, label }) => (
                 <a
-                  key={i}
+                  key={label}
                   href="#"
-                  className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-gold-500/10 hover:border-gold-500/40 transition-all"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-md border border-line text-steel-300 transition-colors hover:border-gold-500/50 hover:text-gold-300"
                 >
-                  <Icon className="w-4 h-4 text-gold-400" />
+                  <Icon className="h-4 w-4" strokeWidth={1.5} />
                 </a>
               ))}
             </div>
           </div>
 
-          <div>
-            <h4 className="font-display text-sm uppercase tracking-[0.25em] text-gold-300 mb-5">
-              Soluciones
-            </h4>
-            <ul className="space-y-3 text-sm text-steel-400">
-              {[
-                { l: "Empresas y comercios", h: "#soluciones" },
-                { l: "Residencial y consorcios", h: "#soluciones" },
-                { l: "Seguridad rural", h: "#soluciones" },
-                { l: "Obras e industrias", h: "#soluciones" },
-                { l: "Monitoreo inteligente", h: "#soluciones" },
-                { l: "Rastreo satelital GPS", h: "#rastreo" },
-              ].map((s) => (
-                <li key={s.l}>
-                  <a href={s.h} className="hover:text-gold-300 transition-colors">
-                    {s.l}
+          <div className="grid grid-cols-2 gap-10 md:col-span-7 md:grid-cols-[1fr_1.15fr_1.6fr]">
+            <Column title="Navegación">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className={link}>
+                    {l.label}
                   </a>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display text-sm uppercase tracking-[0.25em] text-gold-300 mb-5">
-              Contacto
-            </h4>
-            <ul className="space-y-3 text-sm text-steel-400">
-              <li className="flex items-start gap-2">
-                <Phone className="w-4 h-4 text-gold-400 mt-0.5" />
-                <a
-                  href="tel:+5493814156775"
-                  className="hover:text-gold-300 transition-colors"
-                >
-                  +54 9 3814 15-6775
-                </a>
-              </li>
-              <li className="flex items-start gap-2">
-                <Mail className="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0" />
-                <a
-                  href="mailto:administracion@vigiaseguridad.com.ar"
-                  className="text-xs break-all hover:text-gold-300 transition-colors"
-                >
-                  administracion@vigiaseguridad.com.ar
-                </a>
-              </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-gold-400 mt-0.5" />
-                San Miguel de Tucumán · Yerba Buena, Tucumán, Argentina
-              </li>
-            </ul>
+            </Column>
+            <Column title="Soluciones">
+              {solutions.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} className={link}>
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </Column>
+            <div className="col-span-2 md:col-span-1">
+              <Column title="Contacto">
+                <li>
+                  <a href={site.phoneHref} className={link}>
+                    {site.phoneDisplay}
+                  </a>
+                </li>
+                <li>
+                  <a href={`mailto:${site.email}`} className={link}>
+                    <EmailText email={site.email} />
+                  </a>
+                </li>
+                <li className="text-steel-400">{site.location}</li>
+              </Column>
+            </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-xs text-steel-500">
-          <p>© {new Date().getFullYear()} Vig.IA — Seguridad con Inteligencia. Todos los derechos reservados.</p>
+        <div className="mt-16 flex flex-col justify-between gap-4 border-t border-line pt-7 text-xs text-steel-500 md:flex-row">
+          <p>
+            © {new Date().getFullYear()} Vig.IA — Seguridad con Inteligencia.
+            Todos los derechos reservados.
+          </p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-gold-400 transition-colors">Privacidad</a>
-            <a href="#" className="hover:text-gold-400 transition-colors">Términos</a>
-            <a href="#" className="hover:text-gold-400 transition-colors">Habilitaciones</a>
+            <a href="#" className={link}>Privacidad</a>
+            <a href="#" className={link}>Términos</a>
+            <a href="#" className={link}>Habilitaciones</a>
           </div>
         </div>
       </div>

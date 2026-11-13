@@ -1,13 +1,41 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Briefcase, FileUp, Loader2, MailCheck, Send, UserCheck } from "lucide-react";
+import { FileUp, Loader2 } from "lucide-react";
+import { EmailText, Eyebrow, Gold, Reveal, Section } from "./ui";
+import { site } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 type Status = "idle" | "sending" | "sent" | "error";
+
+const areas = [
+  "Personal operativo",
+  "Administración",
+  "Monitoreo 24/7",
+  "Perfiles técnicos",
+];
+
+function Field({
+  label,
+  children,
+  className,
+}: {
+  label: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <label className={cn("block", className)}>
+      <span className="label mb-2 block text-steel-400">{label}</span>
+      {children}
+    </label>
+  );
+}
 
 export function Careers() {
   const [status, setStatus] = useState<Status>("idle");
   const [feedback, setFeedback] = useState("");
+  const [fileName, setFileName] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -15,123 +43,87 @@ export function Careers() {
     setFeedback("");
 
     const form = event.currentTarget;
-    const response = await fetch("/api/careers", {
-      method: "POST",
-      body: new FormData(form),
-    });
+    try {
+      const response = await fetch("/api/careers", {
+        method: "POST",
+        body: new FormData(form),
+      });
+      const data = (await response.json().catch(() => ({}))) as {
+        error?: string;
+      };
 
-    const data = (await response.json().catch(() => ({}))) as { error?: string };
+      if (!response.ok) {
+        setStatus("error");
+        setFeedback(data.error || "No pudimos enviar el CV. Intentá nuevamente.");
+        return;
+      }
 
-    if (!response.ok) {
+      form.reset();
+      setFileName("");
+      setStatus("sent");
+      setFeedback("Recibimos tu CV. Gracias por querer sumarte a Vig.IA.");
+    } catch {
       setStatus("error");
-      setFeedback(data.error || "No pudimos enviar el CV. Intentá nuevamente.");
-      return;
+      setFeedback("No pudimos enviar el CV. Revisá tu conexión e intentá nuevamente.");
     }
-
-    form.reset();
-    setStatus("sent");
-    setFeedback("Recibimos tu CV. Gracias por querer sumarte a Vig.IA.");
   }
 
   return (
-    <section
-      id="equipo"
-      className="relative py-32 lg:py-40 bg-ink-950/62 overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-grid-faint [background-size:70px_70px] opacity-25" />
-      <div className="absolute left-0 top-1/3 w-[520px] h-[520px] bg-radial-gold opacity-45" />
+    <Section id="equipo">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
+        <Reveal className="lg:col-span-5">
+          <Eyebrow index="09">Postulaciones</Eyebrow>
+          <h2 className="display mt-6 text-[clamp(2rem,4.4vw,3.6rem)]">
+            Sumate a <Gold>nuestro equipo.</Gold>
+          </h2>
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-steel-300">
+            Buscamos personas comprometidas, responsables y con vocación de
+            servicio para integrar operaciones, monitoreo y áreas técnicas.
+            Cargá tu CV y lo revisamos para futuras incorporaciones.
+          </p>
 
-      <div className="relative mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-5">
-            <div className="inline-block px-3 py-1 rounded-full glass-gold text-[10px] uppercase tracking-[0.3em] text-gold-300 mb-5">
-              Postulaciones
-            </div>
-            <h2 className="font-display text-4xl md:text-6xl text-gradient-steel leading-tight">
-              Sumate a
-              <br />
-              <span className="text-gradient-gold">nuestro equipo.</span>
-            </h2>
-            <p className="mt-6 text-steel-300/85 leading-relaxed">
-              Buscamos personas comprometidas, responsables y con vocación de
-              servicio para integrar operaciones, monitoreo y áreas técnicas.
-              Cargá tu CV y lo revisamos para futuras incorporaciones.
-            </p>
-
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {[
-                { icon: UserCheck, label: "Personal operativo" },
-                { icon: Briefcase, label: "Administración" },
-                { icon: MailCheck, label: "Monitoreo 24/7" },
-                { icon: FileUp, label: "Perfiles técnicos" },
-              ].map((item) => (
-                <div key={item.label} className="glass rounded-xl px-4 py-3 flex items-center gap-3">
-                  <item.icon className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                  <span className="text-sm text-steel-300">{item.label}</span>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-6 text-sm text-steel-400 leading-relaxed">
-              También podés enviarnos tu CV directamente a{" "}
-              <a
-                href="mailto:administracion@vigiaseguridad.com.ar"
-                className="text-gold-300 break-all hover:text-gold-200 transition-colors"
+          <ul className="mt-9 border-t border-line">
+            {areas.map((a, i) => (
+              <li
+                key={a}
+                className="flex items-baseline gap-4 border-b border-line py-3.5 text-[15px] text-steel-200"
               >
-                administracion@vigiaseguridad.com.ar
-              </a>
-            </p>
-          </div>
+                <span className="label text-steel-500">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {a}
+              </li>
+            ))}
+          </ul>
 
+          <p className="mt-7 text-sm leading-relaxed text-steel-400">
+            También podés enviarnos tu CV directamente a{" "}
+            <a
+              href={`mailto:${site.email}`}
+              className="text-gold-400 underline decoration-gold-500/40 underline-offset-4 transition-colors hover:text-gold-200"
+            >
+              <EmailText email={site.email} />
+            </a>
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.1} className="lg:col-span-7">
           <form
             onSubmit={handleSubmit}
-            className="lg:col-span-7 glass rounded-3xl p-6 md:p-8 ring-gold"
+            className="rounded-lg border border-line bg-ink-900 p-6 md:p-9"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <label className="space-y-2">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-gold-300">
-                  Nombre completo
-                </span>
-                <input
-                  required
-                  name="name"
-                  type="text"
-                  className="w-full rounded-xl border border-white/10 bg-ink-900/75 px-4 py-3 text-sm text-steel-200 outline-none transition focus:border-gold-500/60"
-                />
-              </label>
-
-              <label className="space-y-2">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-gold-300">
-                  Email
-                </span>
-                <input
-                  required
-                  name="email"
-                  type="email"
-                  className="w-full rounded-xl border border-white/10 bg-ink-900/75 px-4 py-3 text-sm text-steel-200 outline-none transition focus:border-gold-500/60"
-                />
-              </label>
-
-              <label className="space-y-2">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-gold-300">
-                  Teléfono
-                </span>
-                <input
-                  name="phone"
-                  type="tel"
-                  className="w-full rounded-xl border border-white/10 bg-ink-900/75 px-4 py-3 text-sm text-steel-200 outline-none transition focus:border-gold-500/60"
-                />
-              </label>
-
-              <label className="space-y-2">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-gold-300">
-                  Área de interés
-                </span>
-                <select
-                  name="role"
-                  className="w-full rounded-xl border border-white/10 bg-ink-900/75 px-4 py-3 text-sm text-steel-200 outline-none transition focus:border-gold-500/60"
-                  defaultValue=""
-                >
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <Field label="Nombre completo">
+                <input required name="name" type="text" autoComplete="name" className="field" />
+              </Field>
+              <Field label="Email">
+                <input required name="email" type="email" autoComplete="email" className="field" />
+              </Field>
+              <Field label="Teléfono">
+                <input name="phone" type="tel" autoComplete="tel" className="field" />
+              </Field>
+              <Field label="Área de interés">
+                <select name="role" defaultValue="" className="field appearance-none">
                   <option value="" disabled>
                     Seleccionar
                   </option>
@@ -141,69 +133,57 @@ export function Careers() {
                   <option>Administración</option>
                   <option>Otra área</option>
                 </select>
-              </label>
+              </Field>
+              <Field label="Mensaje" className="md:col-span-2">
+                <textarea name="message" rows={4} className="field resize-none" />
+              </Field>
             </div>
 
-            <label className="mt-4 block space-y-2">
-              <span className="text-[10px] uppercase tracking-[0.25em] text-gold-300">
-                Mensaje
+            <label className="group relative mt-5 flex cursor-pointer items-center gap-4 rounded-md border border-dashed border-white/20 px-5 py-4 transition-colors focus-within:border-gold-500 hover:border-gold-500/70">
+              <FileUp className="h-5 w-5 flex-shrink-0 text-gold-400" strokeWidth={1.5} aria-hidden />
+              <span className="min-w-0 flex-1">
+                <span className="block truncate text-sm font-medium text-steel-100">
+                  {fileName || "Adjuntar CV"}
+                </span>
+                <span className="block text-xs text-steel-500">
+                  PDF, DOC o DOCX. Máximo 8 MB.
+                </span>
               </span>
-              <textarea
-                name="message"
-                rows={4}
-                className="w-full resize-none rounded-xl border border-white/10 bg-ink-900/75 px-4 py-3 text-sm text-steel-200 outline-none transition focus:border-gold-500/60"
-              />
-            </label>
-
-            <label className="mt-4 block rounded-2xl border border-dashed border-gold-500/35 bg-ink-900/60 p-5 cursor-pointer hover:border-gold-400/70 transition">
-              <span className="flex flex-col sm:flex-row sm:items-center gap-3 text-sm text-steel-300">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl glass-gold">
-                  <FileUp className="h-5 w-5 text-gold-400" />
-                </span>
-                <span>
-                  <span className="block font-medium text-steel-200">
-                    Adjuntar CV
-                  </span>
-                  <span className="text-xs text-steel-400">
-                    PDF, DOC o DOCX. Máximo 8 MB.
-                  </span>
-                </span>
+              <span className="label hidden text-gold-400 sm:block">
+                {fileName ? "Cambiar" : "Elegir archivo"}
               </span>
               <input
                 required
                 name="cv"
                 type="file"
                 accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                className="mt-4 block w-full text-sm text-steel-300 file:mr-4 file:rounded-full file:border-0 file:bg-gold-500 file:px-4 file:py-2 file:text-sm file:font-medium file:text-ink-950 hover:file:bg-gold-400"
+                onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
+                className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
               />
             </label>
 
-            <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-gold-500 to-gold-400 px-7 py-4 text-sm font-medium tracking-wide text-ink-950 shadow-glow transition hover:shadow-[0_0_60px_rgba(212,161,58,0.5)] disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex items-center justify-center gap-2.5 rounded-md bg-gold-500 px-6 py-3.5 text-sm font-medium text-ink-950 transition-colors hover:bg-gold-300 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {status === "sending" ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <Send className="h-4 w-4" />
-                )}
-                Enviar CV
+                {status === "sending" && <Loader2 className="h-4 w-4 animate-spin" />}
+                {status === "sending" ? "Enviando…" : "Enviar CV"}
               </button>
-              {feedback ? (
-                <p
-                  className={`text-sm ${
-                    status === "error" ? "text-red-300" : "text-emerald-300"
-                  }`}
-                >
-                  {feedback}
-                </p>
-              ) : null}
+              <p
+                role="status"
+                className={cn(
+                  "text-sm",
+                  status === "error" ? "text-[#ef8a8a]" : "text-emerald-300"
+                )}
+              >
+                {feedback}
+              </p>
             </div>
           </form>
-        </div>
+        </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

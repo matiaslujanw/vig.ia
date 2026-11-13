@@ -1,39 +1,53 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { Operatives } from "@/components/Operatives";
+import { About } from "@/components/About";
 import { Values } from "@/components/Values";
 import { Services } from "@/components/Services";
+import { Ecosystem } from "@/components/Ecosystem";
 import { Dashboard } from "@/components/Dashboard";
 import { Tracking } from "@/components/Tracking";
 import { RiskMap } from "@/components/RiskMap";
-import { Stats } from "@/components/Stats";
 import { Process } from "@/components/Process";
 import { Careers } from "@/components/Careers";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { WhatsApp } from "@/components/WhatsApp";
-import { PageBackground } from "@/components/PageBackground";
+import { MotionProvider } from "@/components/MotionProvider";
+import { Marquee } from "@/components/fx";
+
+const capabilities = [
+  "Monitoreo 24/7",
+  "Drones",
+  "Cámaras LPR",
+  "Accesos biométricos",
+  "Tótem con IA",
+  "Rastreo GPS",
+  "Control de accesos",
+  "Análisis de riesgo",
+];
+const promise = ["Prevenimos", "Controlamos", "Protegemos"];
 
 export default function Page() {
   return (
-    <main className="relative isolate min-h-screen overflow-hidden">
-      <PageBackground />
-      <div className="relative z-10">
-        <Navbar />
+    <MotionProvider>
+      <Navbar />
+      <main>
         <Hero />
-        <Operatives />
+        <Marquee items={capabilities} />
+        <About />
         <Values />
         <Services />
+        <Ecosystem />
         <Dashboard />
         <Tracking />
         <RiskMap />
-        <Stats />
         <Process />
         <Careers />
+        <Marquee items={[...promise, ...promise]} reverse />
         <CTA />
-        <Footer />
-        <WhatsApp />
-      </div>
-    </main>
+      </main>
+      <Footer />
+      <WhatsApp />
+    </MotionProvider>
   );
 }

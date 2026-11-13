@@ -1,24 +1,18 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
-  Building2,
-  Home,
-  Tractor,
-  HardHat,
-  Radar,
-  FileSearch,
-  Satellite,
-  Check,
+  ArrowRight,
   ArrowUpRight,
+  Building2,
+  FileSearch,
+  HardHat,
+  Home,
+  Radar,
+  Satellite,
+  Tractor,
   type LucideIcon,
 } from "lucide-react";
-
-const featuredOffering = {
-  title: "Ecosistema digital para consorcios",
-  detail:
-    "Tótem con IA, accesos biométricos, cámaras LPR (lectoras de patentes), app propia y monitoreo 24/7",
-};
+import { Gold, Reveal, Section, SectionHeader } from "./ui";
+import { site } from "@/lib/site";
+import { SpotGrid } from "./fx";
 
 const offerings = [
   "Seguridad presencial profesional",
@@ -37,17 +31,7 @@ const solutions: {
   title: string;
   desc: string;
   href?: string;
-  badge?: string;
-  external?: boolean;
 }[] = [
-  {
-    icon: Home,
-    title: "Residencial y consorcios",
-    desc: "Protección integral para edificios, barrios y complejos.",
-    href: "https://carta-presentacion-iota.vercel.app/",
-    badge: "Demo",
-    external: true,
-  },
   {
     icon: Building2,
     title: "Empresas y comercios",
@@ -83,126 +67,110 @@ const solutions: {
 
 export function Services() {
   return (
-    <section
-      id="soluciones"
-      className="relative py-32 lg:py-40 bg-ink-950/62 overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-grid-faint [background-size:60px_60px] opacity-30" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-radial-gold opacity-50" />
+    <Section id="soluciones">
+      <SectionHeader
+        index="03"
+        label="Soluciones"
+        title={
+          <>
+            ¿Qué hace diferente <Gold>a Vig.IA?</Gold>
+          </>
+        }
+        intro="Combinamos seguridad física, monitoreo inteligente y tecnología aplicada en un único sistema integral, que brinda prevención, control y capacidad de respuesta adaptada a cada cliente."
+      />
 
-      <div className="relative mx-auto max-w-7xl px-6">
-        {/* Propuesta de valor */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-20 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="max-w-xl"
-          >
-            <div className="inline-block px-3 py-1 rounded-full glass-gold text-[10px] uppercase tracking-[0.3em] text-gold-300 mb-5">
-              Soluciones
-            </div>
-            <h2 className="font-display text-4xl md:text-6xl text-gradient-steel leading-tight">
-              ¿Qué hace diferente
-              <br />
-              <span className="text-gradient-gold">a Vig.IA?</span>
-            </h2>
-            <p className="mt-6 text-steel-300/85 leading-relaxed border-l-2 border-gold-500/50 pl-5">
-              Combinamos seguridad física, monitoreo inteligente y tecnología
-              aplicada en un único sistema integral, que brinda prevención,
-              control y capacidad de respuesta adaptada a cada cliente.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="glass rounded-2xl p-7 md:p-8"
-          >
-            <div className="text-xs uppercase tracking-[0.25em] text-gold-300 mb-5">
-              Ofrecemos
-            </div>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5">
-              <li className="sm:col-span-2 flex items-start gap-3 rounded-xl border border-gold-500/20 bg-gold-500/[0.06] p-4 text-sm text-steel-300">
-                <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-md glass-gold flex items-center justify-center">
-                  <Check className="w-3 h-3 text-gold-400" />
-                </span>
-                <span className="grid flex-1 gap-1.5 sm:grid-cols-[0.9fr_1.6fr] sm:gap-5">
-                  <span className="font-medium text-gold-300">
-                    {featuredOffering.title}
-                  </span>
-                  <span className="leading-relaxed">
-                    {featuredOffering.detail}
-                  </span>
-                </span>
-              </li>
-              {offerings.map((o, index) => (
-                <li
-                  key={o}
-                  className={`flex items-start gap-3 text-sm text-steel-300 ${
-                    index === offerings.length - 1 ? "sm:col-span-2" : ""
-                  }`}
-                >
-                  <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-md glass-gold flex items-center justify-center">
-                    <Check className="w-3 h-3 text-gold-400" />
-                  </span>
-                  {o}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+      {/* Qué ofrecemos */}
+      <Reveal className="grid grid-cols-1 gap-x-12 gap-y-6 lg:grid-cols-12">
+        <div className="label text-steel-400 lg:col-span-3 lg:pt-4">
+          Ofrecemos
         </div>
+        <ul className="grid grid-cols-1 border-t border-line sm:grid-cols-2 sm:gap-x-10 lg:col-span-9 lg:grid-cols-3">
+          {offerings.map((o, i) => (
+            <li
+              key={o}
+              className="flex items-baseline gap-4 border-b border-line py-4 text-[15px] text-steel-200"
+            >
+              <span className="label text-steel-500">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {o}
+            </li>
+          ))}
+        </ul>
+      </Reveal>
 
-        {/* Soluciones por segmento */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {solutions.map((s, i) => (
-            <motion.a
+      {/* Soluciones por segmento */}
+      <Reveal className="mt-16 lg:mt-20">
+        <SpotGrid className="grid-cols-1 overflow-hidden rounded-lg md:grid-cols-2 lg:grid-cols-3">
+          {/* Destacado: consorcios, con demo */}
+          <a
+            href={site.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative flex min-h-[15rem] flex-col justify-between overflow-hidden !bg-ink-900 p-7 md:col-span-2 lg:p-9"
+          >
+            <div
+              className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gold-500/10 blur-3xl transition-opacity duration-500 group-hover:opacity-100 md:opacity-60"
+              aria-hidden
+            />
+            <div className="relative flex items-center justify-between">
+              <Home className="h-6 w-6 text-gold-400" strokeWidth={1.5} aria-hidden />
+              <span className="label rounded-full border border-gold-500/40 px-3 py-1 text-gold-300">
+                Demo disponible
+              </span>
+            </div>
+            <div className="relative mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h3 className="font-display text-2xl text-steel-100 md:text-3xl">
+                  Residencial y consorcios
+                </h3>
+                <p className="mt-2 max-w-md text-[15px] leading-relaxed text-steel-300">
+                  Protección integral para edificios, barrios y complejos.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-2 text-sm font-medium text-gold-400">
+                Abrir la demo
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </span>
+            </div>
+          </a>
+
+          {solutions.map((s) => (
+            <a
               key={s.title}
               href={s.href ?? "#contacto"}
-              target={s.external ? "_blank" : undefined}
-              rel={s.external ? "noopener noreferrer" : undefined}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="group relative glass rounded-2xl p-6 overflow-hidden hover:ring-gold transition-all"
+              className="group flex min-h-[15rem] flex-col p-7 transition-colors hover:!bg-ink-900"
             >
-              {/* hover gold sheen */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gold-500/0 via-gold-500/0 to-gold-500/0 group-hover:from-gold-500/10 group-hover:to-transparent transition-all duration-500" />
-              <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-gold-500/0 group-hover:bg-gold-500/10 blur-2xl transition-all duration-500" />
-
-              <div className="relative flex items-start justify-between mb-5">
-                <div className="w-12 h-12 rounded-xl glass-gold flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <s.icon className="w-5 h-5 text-gold-400" />
-                </div>
-                <div className="flex items-center gap-2">
-                  {s.badge && (
-                    <span className="rounded-full border border-gold-500/40 bg-gold-500/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-gold-300">
-                      {s.badge}
-                    </span>
-                  )}
-                  <ArrowUpRight className="w-4 h-4 text-steel-400 group-hover:text-gold-400 group-hover:rotate-45 transition-all duration-300" />
-                </div>
+              <div className="flex items-center justify-between">
+                <s.icon className="h-6 w-6 text-gold-400 transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-125" strokeWidth={1.5} aria-hidden />
+                <ArrowRight className="h-4 w-4 -translate-x-1 text-steel-500 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-gold-400 group-hover:opacity-100" />
               </div>
-
-              <h3 className="relative font-display text-lg text-steel-200 mb-2 leading-snug">
+              <h3 className="mt-auto pt-10 font-display text-xl text-steel-100">
                 {s.title}
               </h3>
-              <p className="relative text-sm text-steel-400 leading-relaxed">
+              <p className="mt-2 text-sm leading-relaxed text-steel-400">
                 {s.desc}
               </p>
-
-              {/* corner accents */}
-              <span className="absolute top-3 left-3 w-3 h-3 border-t border-l border-gold-500/40" />
-              <span className="absolute bottom-3 right-3 w-3 h-3 border-b border-r border-gold-500/40" />
-            </motion.a>
+            </a>
           ))}
-        </div>
-      </div>
-    </section>
+
+          <a
+            href="#contacto"
+            className="group flex min-h-[15rem] flex-col justify-between p-7 transition-colors hover:!bg-ink-900 md:col-span-2 lg:col-span-1"
+          >
+            <span className="label text-steel-500">A medida</span>
+            <span>
+              <span className="block font-display text-xl leading-snug text-gold-400">
+                ¿Otro escenario? Diseñamos la solución según tu riesgo.
+              </span>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm text-steel-300">
+                Hablemos
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </span>
+          </a>
+        </SpotGrid>
+      </Reveal>
+    </Section>
   );
 }
