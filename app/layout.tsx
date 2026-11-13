@@ -14,10 +14,37 @@ const mono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+// URL pública del sitio: definir NEXT_PUBLIC_SITE_URL en producción.
+// En Vercel, si no está, se usa el dominio de producción del proyecto.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
+const title = "Vig.IA — Seguridad con Inteligencia";
+const description =
+  "Empresa de seguridad privada y tecnología. Vigilancia inteligente, drones, CCTV, rastreo satelital GPS de flotas, ciberseguridad y protección ejecutiva.";
+
 export const metadata: Metadata = {
-  title: "Vig.IA — Seguridad con Inteligencia",
-  description:
-    "Empresa de seguridad privada y tecnología. Vigilancia inteligente, drones, CCTV, rastreo satelital GPS de flotas, ciberseguridad y protección ejecutiva.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  alternates: { canonical: "/" },
+  // La imagen de portada sale de app/opengraph-image.jpg
+  openGraph: {
+    type: "website",
+    locale: "es_AR",
+    siteName: "Vig.IA",
+    url: "/",
+    title,
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export const viewport: Viewport = {

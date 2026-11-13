@@ -48,9 +48,10 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
   const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  // Escala desde arriba-izquierda: deja fuera de cuadro la marca de agua
-  // que el video trae en la esquina inferior derecha.
-  const videoScale = useTransform(scrollYProgress, [0, 1], [1.1, 1.24]);
+  // El archivo trae franjas negras a los costados y una marca de agua abajo a
+  // la derecha. Con esta escala y este origen (38% desde la izquierda) las tres
+  // cosas quedan fuera de cuadro en cualquier pantalla. No bajar de 1.26.
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1.26, 1.4]);
 
   // Linterna: un halo dorado sigue al cursor sobre el video
   const onMove = (e: React.MouseEvent<HTMLElement>) => {
@@ -74,7 +75,8 @@ export function Hero() {
           muted
           playsInline
           preload="metadata"
-          style={{ y: videoY, scale: videoScale, transformOrigin: "0% 0%" }}
+          poster="/hero-poster.jpg"
+          style={{ y: videoY, scale: videoScale, transformOrigin: "38% 0%" }}
           className="h-full w-full object-cover"
         >
           <source src="/drone-security-footage.mp4" type="video/mp4" />

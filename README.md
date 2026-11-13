@@ -43,6 +43,10 @@ Abrir [http://localhost:3000](http://localhost:3000).
 
 ## Personalización rápida
 
+- URL pública (para la vista previa al compartir el link): variable `NEXT_PUBLIC_SITE_URL`, por ejemplo `https://tudominio.com.ar`. En Vercel, si falta, se usa el dominio de producción del proyecto
+- Imagen al compartir: `app/opengraph-image.jpg` y `app/twitter-image.jpg` (1200×630)
+- Video del hero: `public/drone-security-footage.mp4` y su portada `public/hero-poster.jpg`. Si se cambia por uno sin franjas ni marca de agua, quitar la escala en `components/Hero.tsx`
+
 - Teléfono, WhatsApp, email y URL de la demo: `lib/site.ts`
 - Colores y tipografías: `tailwind.config.ts` y `app/layout.tsx`
 - Logos: `public/vigia-wordmark.png` (navbar) y `public/VIGIA_logo_transparente.png` (footer)
