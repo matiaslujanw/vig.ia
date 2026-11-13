@@ -1,6 +1,6 @@
 # Vig.IA — Seguridad con Inteligencia
 
-Landing page premium cinematográfica para Vig.IA, construida con Next.js 14, TailwindCSS, Framer Motion y un sistema visual basado en negro mate, gris metalizado y dorado/ámbar.
+Landing de Vig.IA, construida con Next.js 14, TailwindCSS y Framer Motion. Sistema visual sobrio: negro en capas, superficies planas con filetes finos, dorado de marca como único acento y tipografía técnica.
 
 ## Setup
 
@@ -15,39 +15,34 @@ Abrir [http://localhost:3000](http://localhost:3000).
 
 - **Next.js 14** (App Router) + TypeScript
 - **TailwindCSS** con paleta de marca (`ink`, `steel`, `gold`)
-- **Framer Motion** para parallax, scroll animations, counters y microinteracciones
-- **lucide-react** para iconografía táctica
-- Fuentes Google: **Orbitron** (display futurista) + **Inter** (cuerpo)
+- **Framer Motion** para apariciones al hacer scroll y las vistas interactivas
+- **lucide-react** para iconografía
+- Fuentes Google: **Archivo** (titulares, levemente expandida), **Inter** (cuerpo), **JetBrains Mono** (etiquetas)
 
 ## Estructura
 
-- `app/` — layout, página, estilos globales
-- `components/` — Navbar, Hero, Operatives, Services, Dashboard, Stats, Process, CTA, Footer, WhatsApp
-- `lib/` — utilidades (`cn` para clases)
-
-## Branding
-
-| Token | Hex | Uso |
-|---|---|---|
-| `ink-950` | `#050505` | Fondo principal |
-| `steel-200` | `#d5d8dc` | Texto base |
-| `gold-500` | `#d4a13a` | Acento de marca |
-| `gold-300` | `#f1cf6b` | Highlights |
+- `app/` — layout, página, estilos globales (`globals.css` define `.display`, `.label`, `.surface`, `.hairline-grid`, `.field`)
+- `components/ui.tsx` — piezas compartidas: `Section`, `SectionHeader`, `Eyebrow`, `Reveal`, `Button`, `Gold`, `LiveDot`
+- `components/fx.tsx` — efectos: `SpotGrid` (foco que sigue al cursor), `Counter`, `Scramble`, `Marquee`, `Radar`, `DetectionOverlay`, `PulseRings`, `ScrollProgress`
+- `components/` — una sección por archivo
+- `lib/site.ts` — teléfono, WhatsApp, email, URL de la demo y links del menú
 
 ## Secciones
 
-1. **Hero** — drone animado, partículas, scanlines, CTAs y stats inline
-2. **Operatives** — dos agentes tácticos en parallax con HUD y barras de capacidad
-3. **Services** — 8 servicios en cards glassmorphism con hover gold
-4. **Dashboard** — SOC con mapa táctico, gráficas, CCTV y eventos en vivo
-5. **Stats** — counters animados al entrar en viewport
-6. **Process** — 4 pasos de metodología
-7. **CTA** — bloque de conversión con corner brackets
-8. **Footer** — branding, contacto, redes
-9. **WhatsApp flotante** — siempre visible
+1. **Hero** — video aéreo, titular, CTAs e indicadores
+2. **About** (`#nosotros`) — quiénes somos, áreas de expertise, visión y misión
+3. **Values** (`#valores`) — los 7 valores
+4. **Services** (`#soluciones`) — qué ofrecemos y soluciones por segmento
+5. **Ecosystem** (`#ecosistema`) — ecosistema digital para consorcios, con vista interactiva y acceso a la demo
+6. **Dashboard** (`#tecnologia`) — centro de comando
+7. **Tracking** (`#rastreo`) — rastreo satelital GPS, explorador de funciones
+8. **RiskMap** (`#riesgos`) — mapa de riesgos interactivo (datos ilustrativos)
+9. **Process** (`#operacion`) — metodología en 4 pasos
+10. **Careers** (`#equipo`) — postulaciones con envío de CV (`/api/careers`, requiere `RESEND_API_KEY`)
+11. **CTA** (`#contacto`) + **Footer** + **WhatsApp flotante**
 
 ## Personalización rápida
 
-- Teléfono / WhatsApp: buscar `5490000000000` y reemplazar
-- Email: `comando@vigia.security` en `components/Footer.tsx`
-- Logo SVG: `components/Logo.tsx` (gradientes `gold` y `steel`)
+- Teléfono, WhatsApp, email y URL de la demo: `lib/site.ts`
+- Colores y tipografías: `tailwind.config.ts` y `app/layout.tsx`
+- Logos: `public/vigia-wordmark.png` (navbar) y `public/VIGIA_logo_transparente.png` (footer)

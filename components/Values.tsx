@@ -1,15 +1,15 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
+  ArrowRight,
+  Award,
   BadgeCheck,
-  Lightbulb,
   Handshake,
+  Lightbulb,
+  Scale,
   ShieldAlert,
   Target,
-  Award,
-  Scale,
 } from "lucide-react";
+import { Gold, Reveal, Section, SectionHeader } from "./ui";
+import { SpotGrid } from "./fx";
 
 const values = [
   {
@@ -51,61 +51,59 @@ const values = [
 
 export function Values() {
   return (
-    <section
-      id="valores"
-      className="relative py-32 lg:py-40 bg-ink-950/62 overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-grid-faint [background-size:60px_60px] opacity-25" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-radial-gold opacity-40" />
+    <Section id="valores">
+      <SectionHeader
+        index="02"
+        label="Nuestra esencia"
+        title={
+          <>
+            Creados para evolucionar <Gold>la seguridad privada.</Gold>
+          </>
+        }
+        intro="Integramos inteligencia, tecnología y presencia operativa bajo un modelo moderno, preventivo y profesional. Estos son los valores que guían cada servicio."
+      />
 
-      <div className="relative mx-auto max-w-7xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <div className="inline-block px-3 py-1 rounded-full glass-gold text-[10px] uppercase tracking-[0.3em] text-gold-300 mb-5">
-            Nuestra esencia
-          </div>
-          <h2 className="font-display text-4xl md:text-6xl text-gradient-steel leading-tight">
-            Creados para evolucionar
-            <br />
-            <span className="text-gradient-gold">la seguridad privada.</span>
-          </h2>
-          <p className="mt-6 text-steel-300/80 leading-relaxed">
-            Integramos inteligencia, tecnología y presencia operativa bajo un
-            modelo moderno, preventivo y profesional. Estos son los valores que
-            guían cada servicio.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <Reveal>
+        <SpotGrid as="ul" className="grid-cols-1 overflow-hidden rounded-lg sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v, i) => (
-            <motion.div
+            <li
               key={v.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="group relative glass rounded-2xl p-6 overflow-hidden hover:ring-gold transition-all"
+              className="group flex min-h-[13.5rem] flex-col p-6 transition-colors hover:!bg-ink-900 lg:p-7"
             >
-              <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-gold-500/0 group-hover:bg-gold-500/10 blur-2xl transition-all duration-500" />
-              <div className="relative w-12 h-12 rounded-xl glass-gold flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                <v.icon className="w-5 h-5 text-gold-400" />
+              <div className="flex items-center justify-between">
+                <v.icon
+                  className="h-5 w-5 text-gold-400 transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-125"
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
+                <span className="label text-steel-500">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
               </div>
-              <h3 className="relative font-display text-lg text-steel-200 mb-2">
+              <h3 className="mt-auto pt-8 font-display text-xl text-steel-100">
                 {v.title}
               </h3>
-              <p className="relative text-sm text-steel-400 leading-relaxed">
+              <p className="mt-2 text-sm leading-relaxed text-steel-400">
                 {v.desc}
               </p>
-            </motion.div>
+            </li>
           ))}
-        </div>
-      </div>
-    </section>
+          <li className="flex min-h-[13.5rem]">
+            <a
+              href="#soluciones"
+              className="group flex flex-1 flex-col justify-between p-6 transition-colors hover:bg-ink-900 lg:p-7"
+            >
+              <ArrowRight
+                className="h-5 w-5 self-end text-gold-400 transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden
+              />
+              <span className="font-display text-xl leading-snug text-gold-400">
+                Cómo se traduce en soluciones
+              </span>
+            </a>
+          </li>
+        </SpotGrid>
+      </Reveal>
+    </Section>
   );
 }

@@ -1,88 +1,86 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
+import { useRef } from "react";
 import { Compass, Layers, Radar, ShieldCheck } from "lucide-react";
+import { Gold, Reveal, Section, SectionHeader } from "./ui";
 
 const steps = [
   {
     icon: Compass,
-    n: "01",
-    t: "Análisis de riesgo",
-    d: "Diagnosticamos riesgos, vulnerabilidades y perímetro para anticipar amenazas.",
+    title: "Análisis de riesgo",
+    desc: "Diagnosticamos riesgos, vulnerabilidades y perímetro para anticipar amenazas.",
   },
   {
     icon: Layers,
-    n: "02",
-    t: "Diseño a medida",
-    d: "Definimos la solución integral: personal, tecnología y protocolos de actuación.",
+    title: "Diseño a medida",
+    desc: "Definimos la solución integral: personal, tecnología y protocolos de actuación.",
   },
   {
     icon: Radar,
-    n: "03",
-    t: "Despliegue",
-    d: "Implementamos, capacitamos y conectamos todo al monitoreo 24/7.",
+    title: "Despliegue",
+    desc: "Implementamos, capacitamos y conectamos todo al monitoreo 24/7.",
   },
   {
     icon: ShieldCheck,
-    n: "04",
-    t: "Seguimiento continuo",
-    d: "Monitoreo, informes operativos y respuesta inmediata ante cada evento.",
+    title: "Seguimiento continuo",
+    desc: "Monitoreo, informes operativos y respuesta inmediata ante cada evento.",
   },
 ];
 
 export function Process() {
+  const ref = useRef<HTMLOListElement>(null);
+  // La línea dorada avanza a medida que la sección cruza la pantalla
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 85%", "end 55%"],
+  });
+  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24 });
+
   return (
-    <section
-      id="operacion"
-      className="relative py-32 bg-ink-950/62 overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-grid-faint [background-size:60px_60px] opacity-25" />
-      <div className="relative mx-auto max-w-7xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-2xl mx-auto mb-20"
-        >
-          <div className="inline-block px-3 py-1 rounded-full glass-gold text-[10px] uppercase tracking-[0.3em] text-gold-300 mb-5">
-            Metodología
-          </div>
-          <h2 className="font-display text-4xl md:text-5xl text-gradient-steel leading-tight">
-            Un proceso pensado para
-            <span className="text-gradient-gold"> no fallar.</span>
-          </h2>
-        </motion.div>
+    <Section id="operacion">
+      <SectionHeader
+        index="08"
+        label="Metodología"
+        title={
+          <>
+            Un proceso pensado para <Gold>no fallar.</Gold>
+          </>
+        }
+      />
 
-        <div className="relative grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* connecting line */}
-          <div className="hidden md:block absolute top-12 left-12 right-12 h-px bg-gradient-to-r from-transparent via-gold-500/40 to-transparent" />
-
-          {steps.map((s, i) => (
-            <motion.div
-              key={s.n}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="relative"
-            >
-              <div className="relative z-10 w-24 h-24 mx-auto rounded-full glass ring-gold flex items-center justify-center group hover:scale-105 transition-transform">
-                <s.icon className="w-8 h-8 text-gold-400" />
-                <span className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-ink-900 border border-gold-500/40 flex items-center justify-center text-[10px] font-mono text-gold-300">
-                  {s.n}
+      <ol
+        ref={ref}
+        className="relative grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        <motion.span
+          style={{ scaleX: progress }}
+          className="absolute inset-x-0 top-0 z-10 hidden h-px origin-left bg-gold-400 shadow-[0_0_14px_1px_rgba(226,182,85,0.7)] lg:block"
+          aria-hidden
+        />
+        {steps.map((s, i) => (
+          <li key={s.title} className="group">
+            <Reveal delay={i * 0.1} className="relative border-t border-white/15 pt-6">
+              <span
+                className="absolute -top-[3px] left-0 h-[5px] w-[5px] rounded-full bg-gold-400 shadow-[0_0_10px_2px_rgba(226,182,85,0.6)]"
+                aria-hidden
+              />
+              <div className="flex items-center justify-between">
+                <span className="display text-6xl !text-transparent tabular-nums transition-colors duration-500 [-webkit-text-stroke:1px_rgba(255,255,255,0.3)] group-hover:!text-gold-400 group-hover:[-webkit-text-stroke:1px_transparent]">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
+                <s.icon
+                  className="h-6 w-6 text-gold-400 transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-125"
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
               </div>
-              <h3 className="text-center font-display text-xl text-steel-200 mt-6 mb-2">
-                {s.t}
-              </h3>
-              <p className="text-center text-sm text-steel-400 leading-relaxed max-w-xs mx-auto">
-                {s.d}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+              <h3 className="mt-8 font-display text-xl text-steel-100">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-steel-400">{s.desc}</p>
+            </Reveal>
+          </li>
+        ))}
+      </ol>
+    </Section>
   );
 }
